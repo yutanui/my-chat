@@ -16,3 +16,9 @@ export interface ChatInputProps {
   isLoading: boolean;
   onStop: () => void;
 }
+
+export interface ChatContainerProps {
+  conversationId: string | null;
+  initialMessages: UIMessage[];
+  onConversationCreated: (id: string) => void;
+}

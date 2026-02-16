@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
 import type { UIMessage } from "ai";
-import { ConversationSidebar } from "@/components/conversation-sidebar";
+import { useCallback, useState } from "react";
 import { ChatContainer } from "@/components/chat-container";
+import { ConversationSidebar } from "@/components/conversation-sidebar";
 import { getMessages } from "@/lib/db";
 
 export default function Home() {

@@ -5,10 +5,14 @@ import type { MessageBubbleProps } from "@/lib/types";
 export function MessageBubble({ message }: MessageBubbleProps) {
   const isUser = message.role === "user";
 
-  const textContent = message.parts
-    ?.filter((part): part is Extract<typeof part, { type: "text" }> => part.type === "text")
-    .map((part) => part.text)
-    .join("") ?? "";
+  const textContent =
+    message.parts
+      ?.filter(
+        (part): part is Extract<typeof part, { type: "text" }> =>
+          part.type === "text",
+      )
+      .map((part) => part.text)
+      .join("") ?? "";
 
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"} mb-4`}>

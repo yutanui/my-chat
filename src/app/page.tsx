@@ -10,6 +10,7 @@ export default function Home() {
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [initialMessages, setInitialMessages] = useState<UIMessage[]>([]);
   const [sidebarRefresh, setSidebarRefresh] = useState(0);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleSelectConversation = useCallback(async (id: string) => {
     const msgs = await getMessages(id);
@@ -27,6 +28,10 @@ export default function Home() {
     setSidebarRefresh((n) => n + 1);
   }, []);
 
+  const handleToggleSidebar = useCallback(() => {
+    setSidebarOpen((prev) => !prev);
+  }, []);
+
   return (
     <div className="flex h-screen">
       <ConversationSidebar
@@ -34,6 +39,7 @@ export default function Home() {
         onSelectConversation={handleSelectConversation}
         onNewChat={handleNewChat}
         refreshTrigger={sidebarRefresh}
+        isOpen={sidebarOpen}
       />
       <main className="flex-1">
         <ChatContainer
@@ -41,6 +47,7 @@ export default function Home() {
           conversationId={conversationId}
           initialMessages={initialMessages}
           onConversationCreated={handleConversationCreated}
+          onToggleSidebar={handleToggleSidebar}
         />
       </main>
     </div>

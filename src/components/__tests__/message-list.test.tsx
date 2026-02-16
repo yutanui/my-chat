@@ -34,8 +34,8 @@ describe("MessageList", () => {
     const { container } = render(
       <MessageList messages={messages} isLoading={true} />,
     );
-    // TypingIndicator renders bouncing dots
-    const dots = container.querySelectorAll("[class*='animate-bounce']");
+    // TypingIndicator renders pulsing dots
+    const dots = container.querySelectorAll("[class*='bg-surface-a40']");
     expect(dots.length).toBe(3);
   });
 

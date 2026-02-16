@@ -12,12 +12,14 @@ interface ChatContainerProps {
   conversationId: string | null;
   initialMessages: UIMessage[];
   onConversationCreated: (id: string) => void;
+  onToggleSidebar: () => void;
 }
 
 export function ChatContainer({
   conversationId,
   initialMessages,
   onConversationCreated,
+  onToggleSidebar,
 }: ChatContainerProps) {
   const [input, setInput] = useState("");
   const activeConversationIdRef = useRef<string | null>(conversationId);
@@ -65,8 +67,8 @@ export function ChatContainer({
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-3xl mx-auto w-full">
-      <ChatHeader />
+    <div className="flex flex-col h-screen w-full">
+      <ChatHeader onToggleSidebar={onToggleSidebar} />
       <MessageList messages={messages} isLoading={isLoading} />
       <ChatInput
         input={input}

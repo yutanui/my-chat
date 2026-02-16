@@ -9,6 +9,7 @@ interface ConversationSidebarProps {
   onSelectConversation: (id: string) => void;
   onNewChat: () => void;
   refreshTrigger: number;
+  isOpen: boolean;
 }
 
 export function ConversationSidebar({
@@ -16,6 +17,7 @@ export function ConversationSidebar({
   onSelectConversation,
   onNewChat,
   refreshTrigger,
+  isOpen,
 }: ConversationSidebarProps) {
   const [conversations, setConversations] = useState<Conversation[]>([]);
 
@@ -34,46 +36,48 @@ export function ConversationSidebar({
   };
 
   return (
-    <aside className="w-64 border-r border-gray-200 dark:border-gray-800 h-screen flex flex-col bg-gray-50 dark:bg-gray-950">
-      <div className="p-3 border-b border-gray-200 dark:border-gray-800">
-        <button
-          type="button"
-          onClick={onNewChat}
-          className="w-full text-sm px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors cursor-pointer"
-        >
-          + New Chat
-        </button>
-      </div>
-      <div className="flex-1 overflow-y-auto">
-        {conversations.map((conv) => (
-          <div
-            key={conv.id}
-            role="button"
-            tabIndex={0}
-            onClick={() => onSelectConversation(conv.id)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                onSelectConversation(conv.id);
-              }
-            }}
-            className={`flex items-center justify-between px-3 py-2 cursor-pointer text-sm hover:bg-gray-100 dark:hover:bg-gray-800 ${
-              conv.id === currentConversationId
-                ? "bg-gray-100 dark:bg-gray-800"
-                : ""
-            }`}
+    <aside
+      className={`${isOpen ? "w-64" : "w-0"} shrink-0 border-r border-surface-a20 h-screen bg-surface-tonal-a0 overflow-hidden transition-all duration-300`}
+    >
+      <div className="flex flex-col h-full w-64 min-w-64">
+        <div className="p-3 border-b border-surface-a20">
+          <button
+            type="button"
+            onClick={onNewChat}
+            className="w-full text-sm px-3 py-2 rounded-lg bg-primary-a0 hover:bg-primary-a10 text-surface-a0 transition-colors cursor-pointer"
           >
-            <span className="truncate flex-1">{conv.title}</span>
-            <button
-              type="button"
-              onClick={(e) => handleDelete(e, conv.id)}
-              className="ml-2 text-gray-400 hover:text-red-500 shrink-0 cursor-pointer"
-              aria-label="Delete conversation"
+            + New Chat
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto">
+          {conversations.map((conv) => (
+            <div
+              key={conv.id}
+              role="button"
+              tabIndex={0}
+              onClick={() => onSelectConversation(conv.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelectConversation(conv.id);
+                }
+              }}
+              className={`flex items-center justify-between px-3 py-2 cursor-pointer text-sm hover:bg-surface-tonal-a10 ${
+                conv.id === currentConversationId ? "bg-surface-tonal-a10" : ""
+              }`}
             >
-              &times;
-            </button>
-          </div>
-        ))}
+              <span className="truncate flex-1">{conv.title}</span>
+              <button
+                type="button"
+                onClick={(e) => handleDelete(e, conv.id)}
+                className="ml-2 text-surface-a40 hover:text-danger-a10 shrink-0 cursor-pointer"
+                aria-label="Delete conversation"
+              >
+                &times;
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </aside>
   );

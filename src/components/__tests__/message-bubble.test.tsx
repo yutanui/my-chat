@@ -45,17 +45,17 @@ describe("MessageBubble", () => {
     expect(wrapper?.className).toContain("justify-start");
   });
 
-  it("renders user message with blue background", () => {
+  it("renders user message with primary background", () => {
     const message = createUIMessage({ role: "user", text: "Hi" });
     const { container } = render(<MessageBubble message={message} />);
-    const bubble = container.querySelector("[class*='bg-blue-600']");
+    const bubble = container.querySelector("[class*='bg-primary-a0']");
     expect(bubble).toBeInTheDocument();
   });
 
-  it("renders assistant message with gray background", () => {
+  it("renders assistant message with light text", () => {
     const message = createUIMessage({ role: "assistant", text: "Hello!" });
     const { container } = render(<MessageBubble message={message} />);
-    const bubble = container.querySelector("[class*='bg-gray-100']");
+    const bubble = container.querySelector("[class*='text-light-a0']");
     expect(bubble).toBeInTheDocument();
   });
 

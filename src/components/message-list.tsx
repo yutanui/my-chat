@@ -14,9 +14,9 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
   }, [messages, isLoading]);
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 py-6">
+    <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-8 lg:px-16">
       {messages.length === 0 && (
-        <div className="flex items-center justify-center h-full text-gray-400">
+        <div className="flex items-center justify-center h-full text-surface-a50">
           <p>Send a message to start chatting</p>
         </div>
       )}

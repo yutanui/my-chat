@@ -1,8 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #121212;
+  --foreground: #ffffff;
+
+  /* Base colors */
+  --clr-dark-a0: #000000;
+  --clr-light-a0: #ffffff;
+
+  /* Primary colors */
+  --clr-primary-a0: #68e5c6;
+  --clr-primary-a10: #7de8cc;
+  --clr-primary-a20: #90ebd2;
+  --clr-primary-a30: #a2efd9;
+  --clr-primary-a40: #b3f2df;
+  --clr-primary-a50: #c3f4e5;
+
+  /* Surface colors */
+  --clr-surface-a0: #121212;
+  --clr-surface-a10: #282828;
+  --clr-surface-a20: #3f3f3f;
+  --clr-surface-a30: #575757;
+  --clr-surface-a40: #717171;
+  --clr-surface-a50: #8b8b8b;
+
+  /* Surface tonal colors */
+  --clr-surface-tonal-a0: #1c2421;
+  --clr-surface-tonal-a10: #313936;
+  --clr-surface-tonal-a20: #474e4c;
+  --clr-surface-tonal-a30: #5f6563;
+  --clr-surface-tonal-a40: #787d7b;
+  --clr-surface-tonal-a50: #919594;
+
+  /* Success colors */
+  --clr-success-a0: #22946e;
+  --clr-success-a10: #47d5a6;
+  --clr-success-a20: #9ae8ce;
+
+  /* Warning colors */
+  --clr-warning-a0: #a87a2a;
+  --clr-warning-a10: #d7ac61;
+  --clr-warning-a20: #ecd7b2;
+
+  /* Danger colors */
+  --clr-danger-a0: #9c2121;
+  --clr-danger-a10: #d94a4a;
+  --clr-danger-a20: #eb9e9e;
+
+  /* Info colors */
+  --clr-info-a0: #21498a;
+  --clr-info-a10: #4077d1;
+  --clr-info-a20: #92b2e5;
 }
 
 @theme inline {
@@ -10,17 +58,123 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Base */
+  --color-dark-a0: var(--clr-dark-a0);
+  --color-light-a0: var(--clr-light-a0);
+
+  /* Primary */
+  --color-primary-a0: var(--clr-primary-a0);
+  --color-primary-a10: var(--clr-primary-a10);
+  --color-primary-a20: var(--clr-primary-a20);
+  --color-primary-a30: var(--clr-primary-a30);
+  --color-primary-a40: var(--clr-primary-a40);
+  --color-primary-a50: var(--clr-primary-a50);
+
+  /* Surface */
+  --color-surface-a0: var(--clr-surface-a0);
+  --color-surface-a10: var(--clr-surface-a10);
+  --color-surface-a20: var(--clr-surface-a20);
+  --color-surface-a30: var(--clr-surface-a30);
+  --color-surface-a40: var(--clr-surface-a40);
+  --color-surface-a50: var(--clr-surface-a50);
+
+  /* Surface Tonal */
+  --color-surface-tonal-a0: var(--clr-surface-tonal-a0);
+  --color-surface-tonal-a10: var(--clr-surface-tonal-a10);
+  --color-surface-tonal-a20: var(--clr-surface-tonal-a20);
+  --color-surface-tonal-a30: var(--clr-surface-tonal-a30);
+  --color-surface-tonal-a40: var(--clr-surface-tonal-a40);
+  --color-surface-tonal-a50: var(--clr-surface-tonal-a50);
+
+  /* Danger */
+  --color-danger-a0: var(--clr-danger-a0);
+  --color-danger-a10: var(--clr-danger-a10);
+  --color-danger-a20: var(--clr-danger-a20);
+
+  /* Success */
+  --color-success-a0: var(--clr-success-a0);
+  --color-success-a10: var(--clr-success-a10);
+  --color-success-a20: var(--clr-success-a20);
+
+  /* Warning */
+  --color-warning-a0: var(--clr-warning-a0);
+  --color-warning-a10: var(--clr-warning-a10);
+  --color-warning-a20: var(--clr-warning-a20);
+
+  /* Info */
+  --color-info-a0: var(--clr-info-a0);
+  --color-info-a10: var(--clr-info-a10);
+  --color-info-a20: var(--clr-info-a20);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Prose overrides for dark theme */
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+.prose thead {
+  background-color: var(--clr-surface-a10);
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--clr-surface-a20);
+  padding: 0.5rem 0.75rem;
+}
+
+.prose pre {
+  background-color: var(--clr-surface-a10);
+  border: 1px solid var(--clr-surface-a20);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.prose code:not(pre code) {
+  background-color: var(--clr-surface-a10);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--clr-primary-a0);
+  background-color: var(--clr-surface-tonal-a0);
+  padding: 0.5rem 1rem;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.prose hr {
+  border-color: var(--clr-surface-a20);
+}
+
+.prose a {
+  color: var(--clr-primary-a20);
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: var(--clr-primary-a30);
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

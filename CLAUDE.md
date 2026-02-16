@@ -76,6 +76,11 @@ Required in `.env.local`:
 
 - `@/*` maps to `./src/*`
 
+## Branching
+
+- Always create a new feature branch before starting work on a new feature
+- Branch naming: `feature/<short-description>` (e.g., `feature/dark-mode`, `feature/user-auth`)
+
 ## Code Style
 
 - Use `"use client"` directive for components that use hooks or browser APIs

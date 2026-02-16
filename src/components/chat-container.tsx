@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import { useChat } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
-import { ChatHeader } from "./chat-header";
-import { MessageList } from "./message-list";
-import { ChatInput } from "./chat-input";
+import { useEffect, useRef, useState } from "react";
 import { createConversation, saveMessage } from "@/lib/db";
+import { ChatHeader } from "./chat-header";
+import { ChatInput } from "./chat-input";
+import { MessageList } from "./message-list";
 
 interface ChatContainerProps {
   conversationId: string | null;
@@ -47,7 +47,7 @@ export function ChatContainer({
       }
     }
     prevMessagesLengthRef.current = messages.length;
-  }, [messages.length]);
+  }, [messages]);
 
   const handleSubmit = async () => {
     if (!input.trim()) return;

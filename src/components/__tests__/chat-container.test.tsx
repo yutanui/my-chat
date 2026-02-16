@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { UIMessage } from "ai";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ChatContainer } from "../chat-container";
 
 // Mock the db module
@@ -62,9 +62,13 @@ describe("ChatContainer", () => {
     // Header
     expect(screen.getByText("My Chat")).toBeInTheDocument();
     // Empty message list
-    expect(screen.getByText("Send a message to start chatting")).toBeInTheDocument();
+    expect(
+      screen.getByText("Send a message to start chatting"),
+    ).toBeInTheDocument();
     // Input
-    expect(screen.getByPlaceholderText("Type a message...")).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText("Type a message..."),
+    ).toBeInTheDocument();
   });
 
   it("Send button is disabled when input is empty", () => {

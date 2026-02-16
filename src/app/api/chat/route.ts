@@ -1,5 +1,5 @@
-import { streamText, convertToModelMessages } from "ai";
 import { openai } from "@ai-sdk/openai";
+import { convertToModelMessages, streamText } from "ai";
 
 export const maxDuration = 30;
 

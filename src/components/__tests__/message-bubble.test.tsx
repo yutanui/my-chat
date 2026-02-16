@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { MessageBubble } from "../message-bubble";
+import { describe, expect, it } from "vitest";
 import { createUIMessage } from "@/test/helpers";
+import { MessageBubble } from "../message-bubble";
 
 describe("MessageBubble", () => {
   it("extracts and renders text from a single text part", () => {

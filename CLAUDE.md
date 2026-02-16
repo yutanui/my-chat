@@ -12,6 +12,8 @@ AI chatbot app with conversation history, built with Next.js 16 (App Router), Ty
 - **AI**: Vercel AI SDK v4 (`ai`, `@ai-sdk/openai`, `@ai-sdk/react`)
 - **Database**: Supabase (conversations + messages tables)
 - **Markdown**: react-markdown + remark-gfm
+- **Linting/Formatting**: Biome (replaces ESLint)
+- **Testing**: Vitest + React Testing Library
 - **Package manager**: pnpm
 
 ## Project Structure
@@ -34,13 +36,20 @@ src/
     db.ts                 # Supabase CRUD operations (conversations, messages)
     supabase.ts           # Supabase client init
     types.ts              # Shared TypeScript interfaces
+  test/
+    setup.ts              # Vitest setup (jsdom, testing-library matchers)
+    helpers.ts            # Test helper utilities
 ```
 
 ## Commands
 
 - `pnpm dev` — start dev server
 - `pnpm build` — production build
-- `pnpm lint` — run ESLint
+- `pnpm lint` — run Biome linter (`biome check src/`)
+- `pnpm lint:fix` — auto-fix lint + format issues (`biome check --write src/`)
+- `pnpm format` — format code (`biome format --write src/`)
+- `pnpm test` — run tests (Vitest)
+- `pnpm test:watch` — run tests in watch mode
 
 ## AI SDK v4 Conventions
 

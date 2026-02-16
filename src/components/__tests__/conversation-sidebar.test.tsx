@@ -1,6 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ConversationSidebar } from "../conversation-sidebar";
 
 vi.mock("@/lib/db", () => ({
@@ -8,11 +8,21 @@ vi.mock("@/lib/db", () => ({
   deleteConversation: vi.fn(),
 }));
 
-import { listConversations, deleteConversation } from "@/lib/db";
+import { deleteConversation, listConversations } from "@/lib/db";
 
 const mockConversations = [
-  { id: "c1", title: "First Chat", created_at: "2024-01-01", updated_at: "2024-01-02" },
-  { id: "c2", title: "Second Chat", created_at: "2024-01-02", updated_at: "2024-01-03" },
+  {
+    id: "c1",
+    title: "First Chat",
+    created_at: "2024-01-01",
+    updated_at: "2024-01-02",
+  },
+  {
+    id: "c2",
+    title: "Second Chat",
+    created_at: "2024-01-02",
+    updated_at: "2024-01-03",
+  },
 ];
 
 function renderSidebar(overrides = {}) {

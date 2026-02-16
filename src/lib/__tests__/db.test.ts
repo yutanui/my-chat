@@ -1,11 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createConversation,
-  listConversations,
+  deleteConversation,
   getMessages,
+  listConversations,
   saveMessage,
   updateConversationTitle,
-  deleteConversation,
 } from "@/lib/db";
 import { createUIMessage } from "@/test/helpers";
 
@@ -71,7 +71,12 @@ beforeEach(() => {
 
 describe("createConversation", () => {
   it("creates a conversation with given title", async () => {
-    const conversation = { id: "1", title: "Hello", created_at: "2024-01-01", updated_at: "2024-01-01" };
+    const conversation = {
+      id: "1",
+      title: "Hello",
+      created_at: "2024-01-01",
+      updated_at: "2024-01-01",
+    };
     setupChain({
       single: { data: conversation, error: null },
     });
@@ -105,8 +110,18 @@ describe("createConversation", () => {
 describe("listConversations", () => {
   it("returns conversations sorted by updated_at desc", async () => {
     const conversations = [
-      { id: "2", title: "Second", created_at: "2024-01-02", updated_at: "2024-01-02" },
-      { id: "1", title: "First", created_at: "2024-01-01", updated_at: "2024-01-01" },
+      {
+        id: "2",
+        title: "Second",
+        created_at: "2024-01-02",
+        updated_at: "2024-01-02",
+      },
+      {
+        id: "1",
+        title: "First",
+        created_at: "2024-01-01",
+        updated_at: "2024-01-01",
+      },
     ];
     setupChain({
       order: { data: conversations, error: null },
@@ -141,8 +156,20 @@ describe("listConversations", () => {
 describe("getMessages", () => {
   it("maps rows to UIMessage format", async () => {
     const rows = [
-      { id: "m1", conversation_id: "c1", role: "user", parts: [{ type: "text", text: "Hi" }], created_at: "2024-01-01" },
-      { id: "m2", conversation_id: "c1", role: "assistant", parts: [{ type: "text", text: "Hello!" }], created_at: "2024-01-01" },
+      {
+        id: "m1",
+        conversation_id: "c1",
+        role: "user",
+        parts: [{ type: "text", text: "Hi" }],
+        created_at: "2024-01-01",
+      },
+      {
+        id: "m2",
+        conversation_id: "c1",
+        role: "assistant",
+        parts: [{ type: "text", text: "Hello!" }],
+        created_at: "2024-01-01",
+      },
     ];
     setupChain({
       order: { data: rows, error: null },
@@ -154,7 +181,11 @@ describe("getMessages", () => {
     expect(mockEq).toHaveBeenCalledWith("conversation_id", "c1");
     expect(result).toEqual([
       { id: "m1", role: "user", parts: [{ type: "text", text: "Hi" }] },
-      { id: "m2", role: "assistant", parts: [{ type: "text", text: "Hello!" }] },
+      {
+        id: "m2",
+        role: "assistant",
+        parts: [{ type: "text", text: "Hello!" }],
+      },
     ]);
   });
 
@@ -173,9 +204,7 @@ describe("saveMessage", () => {
     const message = createUIMessage({ id: "m1", role: "user", text: "Hello" });
 
     // Need separate from() calls to return different chains
-    let callCount = 0;
     vi.mocked(supabase.from).mockImplementation((table: string) => {
-      callCount++;
       if (table === "messages") {
         return {
           upsert: vi.fn().mockReturnValue({ error: null }),
@@ -224,7 +253,9 @@ describe("updateConversationTitle", () => {
       eq: { error: new Error("update failed") },
     });
 
-    await expect(updateConversationTitle("c1", "Title")).rejects.toThrow("update failed");
+    await expect(updateConversationTitle("c1", "Title")).rejects.toThrow(
+      "update failed",
+    );
   });
 });
 

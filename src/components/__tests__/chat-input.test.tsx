@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
 import { ChatInput } from "../chat-input";
 
 function renderChatInput(overrides = {}) {
@@ -19,7 +19,9 @@ function renderChatInput(overrides = {}) {
 describe("ChatInput", () => {
   it("renders textarea and Send button", () => {
     renderChatInput();
-    expect(screen.getByPlaceholderText("Type a message...")).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText("Type a message..."),
+    ).toBeInTheDocument();
     expect(screen.getByText("Send")).toBeInTheDocument();
   });
 

@@ -1,5 +1,5 @@
-import { supabase } from "./supabase";
 import type { UIMessage } from "ai";
+import { supabase } from "./supabase";
 
 export interface Conversation {
   id: string;
@@ -9,7 +9,7 @@ export interface Conversation {
 }
 
 export async function createConversation(
-  title?: string
+  title?: string,
 ): Promise<Conversation> {
   const { data, error } = await supabase
     .from("conversations")
@@ -30,7 +30,7 @@ export async function listConversations(): Promise<Conversation[]> {
 }
 
 export async function getMessages(
-  conversationId: string
+  conversationId: string,
 ): Promise<UIMessage[]> {
   const { data, error } = await supabase
     .from("messages")
@@ -47,7 +47,7 @@ export async function getMessages(
 
 export async function saveMessage(
   conversationId: string,
-  message: UIMessage
+  message: UIMessage,
 ): Promise<void> {
   const { error } = await supabase.from("messages").upsert({
     id: message.id,
@@ -65,7 +65,7 @@ export async function saveMessage(
 
 export async function updateConversationTitle(
   conversationId: string,
-  title: string
+  title: string,
 ): Promise<void> {
   const { error } = await supabase
     .from("conversations")
@@ -75,7 +75,7 @@ export async function updateConversationTitle(
 }
 
 export async function deleteConversation(
-  conversationId: string
+  conversationId: string,
 ): Promise<void> {
   const { error } = await supabase
     .from("conversations")

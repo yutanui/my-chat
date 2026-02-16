@@ -25,6 +25,7 @@ export function ChatInput({
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
+          aria-label="Message input"
           placeholder="Type a message..."
           rows={1}
           className="flex-1 resize-none rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -46,7 +47,9 @@ export function ChatInput({
         ) : (
           <button
             type="button"
-            onClick={() => { if (input.trim()) onSubmit(); }}
+            onClick={() => {
+              if (input.trim()) onSubmit();
+            }}
             disabled={!input.trim()}
             className="shrink-0 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 dark:disabled:bg-gray-700 text-white px-4 py-2.5 text-sm font-medium transition-colors disabled:cursor-not-allowed"
           >

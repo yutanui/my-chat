@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { MessageListProps } from "@/lib/types";
 import { MessageBubble } from "./message-bubble";
 import { TypingIndicator } from "./typing-indicator";
-import type { MessageListProps } from "@/lib/types";
 
 export function MessageList({ messages, isLoading }: MessageListProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: scroll on messages/loading changes
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
